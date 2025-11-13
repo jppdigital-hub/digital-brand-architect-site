@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Brand Alchemy - Digital Brand Architect</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Brand Alchemy by Paul Linehan. Digital Brand Architect who turns lived experience into a precise, scalable brand system.">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --graphite: #2B2B2B;
+      --amber: #F0A12E;
+      --porcelain: #FCFCFB;
+      --blueprint: #3C6E9F;
+      --max-width: 1120px;
+      --radius-soft: 8px;
+      --transition-fast: 0.18s ease-out;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background-color: var(--porcelain);
+      color: var(--graphite);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    /* Layout helpers */
+
+    .page-wrap {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    section {
+      padding: 4.5rem 0;
+    }
+
+    @media (min-width: 960px) {
+      section {
+        padding: 5.5rem 0;
+      }
+    }
+
+    /* Header and nav */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(252, 252, 251, 0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(43, 43, 43, 0.06);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .logo {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .logo-title {
+      font-family: 'Playfair Display', "Times New Roman", serif;
+      font-weight: 700;
+      font-size: 1.35rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .logo-subtitle {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      opacity: 0.7;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding-bottom: 0.15rem;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--amber);
+      transition: width var(--transition-fast);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      padding: 0.55rem 1.25rem;
+      border-radius: 999px;
+      border: 1px solid rgba(43, 43, 43, 0.15);
+      font-size: 0.9rem;
+      font-weight: 500;
+      background: #fffdfa;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .nav-cta span {
+      font-size: 0.9rem;
+    }
+
+    .nav-cta-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background-color: var(--amber);
+      box-shadow: 0 0 0 4px rgba(240, 161, 46, 0.25);
+    }
+
+    /* Mobile nav */
+
+    .nav-toggle {
+      display: none;
+      border: none;
+      background: none;
+      padding: 0.25rem;
+      cursor: pointer;
+    }
+
+    .nav-toggle-bar {
+      width: 22px;
+      height: 2px;
+      border-radius: 999px;
+      background-color: var(--graphite);
+      transition: transform var(--transition-fast), opacity var(--transition-fast);
+    }
+
+    .nav-toggle-bar + .nav-toggle-bar {
+      margin-top: 5px;
+    }
+
+    .nav-mobile {
+      display: none;
+      flex-direction: column;
+      gap: 1.25rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid rgba(43, 43, 43, 0.06);
+    }
+
+    .nav-mobile a {
+      font-size: 0.98rem;
+    }
+
+    .nav-mobile .nav-cta {
+      justify-content: center;
+      margin-top: 0.5rem;
+    }
+
+    .nav-mobile.open {
+      display: flex;
+    }
+
+    .nav-toggle.open .nav-toggle-bar:nth-child(1) {
+      transform: translateY(3.5px) rotate(45deg);
+    }
+
+    .nav-toggle.open .nav-toggle-bar:nth-child(2) {
+      transform: translateY(-3.5px) rotate(-45deg);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .nav-toggle {
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+    }
+
+    @media (min-width: 769px) {
+      .nav-mobile {
+        display: none !important;
+      }
+    }
+
+    /* Hero */
+
+    .hero {
+      padding-top: 3.75rem;
+      padding-bottom: 4.5rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr);
+      gap: 2.75rem;
+      align-items: center;
+    }
+
+    @media (min-width: 960px) {
+      .hero {
+        padding-top: 5.5rem;
+        padding-bottom: 5.5rem;
+      }
+      .hero-grid {
+        grid-template-columns: minmax(0, 3.5fr) minmax(0, 2.5fr);
+        gap: 3.5rem;
+      }
+    }
+
+    .hero-kicker {
+      font-size: 0.9rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 0.9rem;
+      opacity: 0.7;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', "Times New Roman", serif;
+      font-weight: 700;
+      font-size: clamp(2.3rem, 4vw, 3.1rem);
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.05rem;
+      max-width: 32rem;
+      margin-bottom: 1.75rem;
+      color: rgba(43, 43, 43, 0.88);
+    }
+
+    .hero-subtitle strong {
+      font-weight: 600;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      align-items: center;
+      margin-bottom: 1.75rem;
+    }
+
+    .btn-primary {
+      border: none;
+      padding: 0.85rem 1.8rem;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.98rem;
+      background: var(--amber);
+      color: #211915;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      box-shadow: 0 14px 30px rgba(240, 161, 46, 0.32);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 40px rgba(240, 161, 46, 0.4);
+      background-color: #f3ad44;
+    }
+
+    .btn-secondary {
+      border-radius: 999px;
+      padding: 0.8rem 1.5rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      border: 1px solid rgba(43, 43, 43, 0.16);
+      background: rgba(252, 252, 251, 0.8);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: background-color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .btn-secondary:hover {
+      background-color: #ffffff;
+      border-color: rgba(43, 43, 43, 0.28);
+      transform: translateY(-1px);
+    }
+
+    .hero-note {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      max-width: 28rem;
+    }
+
+    .hero-card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 1.5rem 1.4rem;
+      border: 1px solid rgba(43, 43, 43, 0.06);
+      box-shadow: 0 22px 60px rgba(0, 0, 0, 0.04);
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      background-color: rgba(60, 110, 159, 0.06);
+      color: var(--blueprint);
+      font-size: 0.78rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-bottom: 1rem;
+    }
+
+    .hero-tag-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background-color: var(--blueprint);
+    }
+
+    .hero-card-title {
+      font-family: 'Playfair Display', "Times New Roman", serif;
+      font-size: 1.15rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-card-body {
+      font-size: 0.9rem;
+      opacity: 0.85;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-list {
+      list-style: none;
+      font-size: 0.88rem;
+    }
+
+    .hero-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.45rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-list-bullet {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background-color: var(--amber);
+      margin-top: 0.32rem;
+    }
+
+    /* Sections */
+
+    .section-kicker {
+      font-size: 0.83rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      margin-bottom: 0.75rem;
+      opacity: 0.7;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', "Times New Roman", serif;
+      font-size: 1.8rem;
+      line-height: 1.2;
+      margin-bottom: 1.1rem;
+    }
+
+    .section-intro {
+      font-size: 1rem;
+      max-width: 38rem;
+      color: rgba(43, 43, 43, 0.88);
+      margin-bottom: 1.8rem;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.5fr);
+      gap: 2.75rem;
+      align-items: flex-start;
+    }
+
+    @media (max-width: 880px) {
+      .two-column {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 2rem;
+      }
+    }
+
+    .pill-list {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.4rem;
+    }
+
+    .pill {
+      font-size: 0.82rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      background-color: rgba(43, 43, 43, 0.04);
+      border: 1px solid rgba(43, 43, 43, 0.06);
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 720px) {
+      .card-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .card {
+      background-color: #ffffff;
+      border-radius: 14px;
+      padding: 1.25rem 1.2rem;
+      border: 1px solid rgba(43, 43, 43, 0.06);
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.03);
+    }
+
+    .card-title {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .card-body {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    .card-number {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      color: #211915;
+      background: rgba(240, 161, 46, 0.16);
+      margin-bottom: 0.7rem;
+    }
+
+    .stack-list {
+      list-style: none;
+      display: grid;
+      gap: 0.65rem;
+      margin-top: 0.35rem;
+      font-size: 0.9rem;
+    }
+
+    .stack-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.4rem;
+    }
+
+    .stack-icon {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      margin-top: 0.25rem;
+      background: radial-gradient(circle at 30% 20%, #ffffff, var(--amber));
+    }
+
+    /* Outcome band */
+
+    .outcome-band {
+      background: radial-gradient(circle at top left, rgba(240, 161, 46, 0.24), transparent 58%),
+                  radial-gradient(circle at bottom right, rgba(60, 110, 159, 0.18), transparent 60%),
+                  #ffffff;
+      border-radius: 20px;
+      padding: 2rem 1.8rem;
+      border: 1px solid rgba(43, 43, 43, 0.06);
+      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.06);
+      margin-top: 1rem;
+    }
+
+    @media (min-width: 880px) {
+      .outcome-band {
+        padding: 2.3rem 2.4rem;
+      }
+    }
+
+    .outcome-title {
+      font-family: 'Playfair Display', "Times New Roman", serif;
+      font-size: 1.5rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .outcome-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.7fr);
+      gap: 2rem;
+      align-items: flex-start;
+    }
+
+    @media (max-width: 880px) {
+      .outcome-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .outcome-list {
+      list-style: none;
+      font-size: 0.92rem;
+      display: grid;
+      gap: 0.4rem;
+    }
+
+    .outcome-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.45rem;
+    }
+
+    .outcome-bullet {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: var(--graphite);
+      margin-top: 0.33rem;
+      box-shadow: 0 0 0 2px rgba(33, 25, 21, 0.18);
+    }
+
+    /* CTA section */
+
+    .cta-section {
+      text-align: center;
+      padding-bottom: 4.5rem;
+    }
+
+    .cta-box {
+      margin: 0 auto;
+      max-width: 640px;
+      background-color: #ffffff;
+      border-radius: 18px;
+      padding: 2.2rem 2rem 2.3rem;
+      border: 1px solid rgba(43, 43, 43, 0.06);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.05);
+    }
+
+    .cta-title {
+      font-family: 'Playfair Display', "Times New Roman", serif;
+      font-size: 1.7rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .cta-body {
+      font-size: 0.98rem;
+      max-width: 30rem;
+      margin: 0 auto 1.5rem;
+      color: rgba(43, 43, 43, 0.9);
+    }
+
+    .cta-small {
+      font-size: 0.83rem;
+      opacity: 0.78;
+      margin-top: 0.8rem;
+    }
+
+    /* Footer */
+
+    footer {
+      border-top: 1px solid rgba(43, 43, 43, 0.08);
+      padding: 1.75rem 0 2.2rem;
+      font-size: 0.82rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      align-items: center;
+      justify-content: space-between;
+      opacity: 0.74;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrap">
+    <header>
+      <div class="container">
+        <nav class="nav">
+          <a href="#top" class="logo">
+            <span class="logo-title">Brand Alchemy</span>
+            <span class="logo-subtitle">Digital Brand Architect</span>
+          </a>
+          <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#method">Method</a>
+            <a href="#outcomes">Outcomes</a>
+            <a href="#work-with-me" class="nav-cta">
+              <span class="nav-cta-dot"></span>
+              <span>Start the work</span>
+            </a>
+          </div>
+          <button class="nav-toggle" aria-label="Toggle navigation">
+            <span class="nav-toggle-bar"></span>
+            <span class="nav-toggle-bar"></span>
+          </button>
+        </nav>
+        <div class="nav-mobile" id="mobileNav">
+          <a href="#about">About</a>
+          <a href="#method">Method</a>
+          <a href="#outcomes">Outcomes</a>
+          <a href="#work-with-me" class="nav-cta">
+            <span class="nav-cta-dot"></span>
+            <span>Start the work</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- Hero -->
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <div class="hero-kicker">Brand Alchemy by Paul Linehan</div>
+            <h1 class="hero-title">The Digital Brand Architect behind the curtain</h1>
+            <p class="hero-subtitle">
+              I build brands the way an architect builds structures: with truth, precision, and a stubborn refusal to create anything hollow. If your work is real and your brand is not, we fix that.
+            </p>
+            <div class="hero-actions">
+              <button class="btn-primary" data-scroll-target="#work-with-me">
+                Start here
+                <span>→</span>
+              </button>
+              <button class="btn-secondary" data-scroll-target="#method">
+                See the method
+              </button>
+            </div>
+            <p class="hero-note">
+              No fluff. No guru performance. Just clear identity, strong structure, and a system that makes everything else in your business easier to build.
+            </p>
+          </div>
+          <aside class="hero-card" aria-label="Snapshot of how I help">
+            <div class="hero-tag">
+              <span class="hero-tag-dot"></span>
+              <span>Why people hire me</span>
+            </div>
+            <h2 class="hero-card-title">You are not the problem. Your architecture is.</h2>
+            <p class="hero-card-body">
+              Clients come to me when they are done guessing who they are online and why their brand is not pulling its weight.
+            </p>
+            <ul class="hero-list">
+              <li>
+                <span class="hero-list-bullet"></span>
+                <span>Their message feels muddy and soft.</span>
+              </li>
+              <li>
+                <span class="hero-list-bullet"></span>
+                <span>Their identity is scattered across offers and platforms.</span>
+              </li>
+              <li>
+                <span class="hero-list-bullet"></span>
+                <span>Their website looks fine but says nothing true.</span>
+              </li>
+              <li>
+                <span class="hero-list-bullet"></span>
+                <span>Their ideas are strong but disconnected and hard to explain.</span>
+              </li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <!-- About / What I do -->
+      <section id="about">
+        <div class="container">
+          <div class="two-column">
+            <div>
+              <div class="section-kicker">What I actually do</div>
+              <h2 class="section-title">I turn lived experience into a brand system with a spine.</h2>
+              <p class="section-intro">
+                You have years of story, skill, and pattern recognition. I take all of that and build a clear, precise brand around it so people finally understand what you do, why it matters, and why they should trust you.
+              </p>
+              <p>
+                I pull the truth out of your story, map your patterns, and connect the dots you have been tripping over for years. Then I build you a system that feels clean, calm, and powerful.
+              </p>
+            </div>
+            <div>
+              <p><strong>People usually find me when:</strong></p>
+              <ul class="stack-list">
+                <li>
+                  <span class="stack-icon"></span>
+                  <span>Their current brand feels like a costume instead of a second skin.</span>
+                </li>
+                <li>
+                  <span class="stack-icon"></span>
+                  <span>They are tired of redesigning things that were never aligned in the first place.</span>
+                </li>
+                <li>
+                  <span class="stack-icon"></span>
+                  <span>They have serious depth but their online presence feels flat or generic.</span>
+                </li>
+                <li>
+                  <span class="stack-icon"></span>
+                  <span>They know they are underpriced but cannot explain why they are worth more.</span>
+                </li>
+              </ul>
+              <ul class="pill-list">
+                <li class="pill">Identity engineering</li>
+                <li class="pill">Offer architecture</li>
+                <li class="pill">Message clarity</li>
+                <li class="pill">System level thinking</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Method -->
+      <section id="method">
+        <div class="container">
+          <div class="section-kicker">The Brand Alchemy method</div>
+          <h2 class="section-title">Built around clear outcomes, less friction, and faster clarity.</h2>
+          <p class="section-intro">
+            This is where the Alex Hormozi value logic and my own brand philosophy meet. We make the outcome obvious, strip friction out of the process, and shorten the time it takes for you to feel aligned and confident.
+          </p>
+          <div class="card-grid">
+            <article class="card">
+              <div class="card-number">1</div>
+              <h3 class="card-title">Make the outcome impossible to miss</h3>
+              <p class="card-body">
+                You walk away with a complete brand system. Positioning, story, visual identity, core website structure, language, and content direction. Not a mood board. A functioning engine.
+              </p>
+            </article>
+            <article class="card">
+              <div class="card-number">2</div>
+              <h3 class="card-title">Turn your truth into leverage</h3>
+              <p class="card-body">
+                Your lived experience becomes the competitive edge. I extract what is unique about how you see the world, then build the brand so that edge is clear and undeniable.
+              </p>
+            </article>
+            <article class="card">
+              <div class="card-number">3</div>
+              <h3 class="card-title">Remove brand friction at the root</h3>
+              <p class="card-body">
+                No more staring at blank pages. No more guessing what to post. No more trying every tactic because nothing feels right. The system gives you rails. Your work provides the fuel.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experience / Working with me -->
+      <section>
+        <div class="container">
+          <div class="two-column">
+            <div>
+              <div class="section-kicker">What working with me feels like</div>
+              <h2 class="section-title">Straightforward. Deep. Human. Zero fluff.</h2>
+              <p class="section-intro">
+                I talk to you like an equal adult who has a real life and zero patience for performative nonsense. You get clear thinking, honest feedback, and a calm structure that lets you stop spinning.
+              </p>
+            </div>
+            <div>
+              <ul class="stack-list">
+                <li>
+                  <span class="stack-icon"></span>
+                  <span><strong>Direct, not harsh.</strong> I will tell you when something is confusing or weak, and I will help you fix it.</span>
+                </li>
+                <li>
+                  <span class="stack-icon"></span>
+                  <span><strong>Warm, not soft.</strong> You will feel seen and understood, but I will not coddle ideas that are not serving you.</span>
+                </li>
+                <li>
+                  <span class="stack-icon"></span>
+                  <span><strong>Systematic, not robotic.</strong> There is a clear process, but the process flexes around who you are.</span>
+                </li>
+                <li>
+                  <span class="stack-icon"></span>
+                  <span><strong>Long term, not trendy.</strong> We build for the next decade of your work, not the next algorithm swing.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Outcomes -->
+      <section id="outcomes">
+        <div class="container">
+          <div class="section-kicker">Your brand as an engine</div>
+          <h2 class="section-title">This is what a clear architecture unlocks.</h2>
+          <p class="section-intro">
+            When your identity, message, and structure finally line up, everything that used to feel heavy gets lighter. Your brand stops fighting you and starts working for you.
+          </p>
+
+          <div class="outcome-band">
+            <div class="outcome-grid">
+              <div>
+                <h3 class="outcome-title">You get more than a nice site.</h3>
+                <p>
+                  You get a brand that makes it easier to sell, easier to create, and easier to believe in your own work. That is the point of all of this.
+                </p>
+              </div>
+              <div>
+                <ul class="outcome-list">
+                  <li>
+                    <span class="outcome-bullet"></span>
+                    <span>You can explain what you do in one clear sentence that lands.</span>
+                  </li>
+                  <li>
+                    <span class="outcome-bullet"></span>
+                    <span>Your pricing feels honest and justified, not like a guess.</span>
+                  </li>
+                  <li>
+                    <span class="outcome-bullet"></span>
+                    <span>Your content has a clear point and builds a body of work, not random posts.</span>
+                  </li>
+                  <li>
+                    <span class="outcome-bullet"></span>
+                    <span>Your offers sit inside a structure that makes sense to buyers and to you.</span>
+                  </li>
+                  <li>
+                    <span class="outcome-bullet"></span>
+                    <span>You stop reinventing yourself every few months because the foundation is finally right.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section id="work-with-me" class="cta-section">
+        <div class="container">
+          <div class="cta-box">
+            <h2 class="cta-title">Ready to build something that will still matter in ten years?</h2>
+            <p class="cta-body">
+              If you feel like your work is bigger than your current brand, that is your signal. The next chapter needs a system, not another random redesign. That is where I come in.
+            </p>
+            <button class="btn-primary">
+              Start the conversation
+              <span>→</span>
+            </button>
+            <p class="cta-small">
+              No pressure. No funnels. Just a real talk about where you are and what a clean, precise brand architecture could unlock for you.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-inner">
+        <div>© <span id="year"></span> Brand Alchemy · Paul Linehan</div>
+        <div class="footer-links">
+          <span>Built on truth, precision, and transformation.</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Mobile nav toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const mobileNav = document.getElementById('mobileNav');
+
+    navToggle.addEventListener('click', () => {
+      navToggle.classList.toggle('open');
+      mobileNav.classList.toggle('open');
+    });
+
+    // Close mobile nav when a link is clicked
+    mobileNav.addEventListener('click', (event) => {
+      if (event.target.tagName.toLowerCase() === 'a') {
+        navToggle.classList.remove('open');
+        mobileNav.classList.remove('open');
+      }
+    });
+
+    // Smooth scroll for buttons with data-scroll-target
+    document.querySelectorAll('[data-scroll-target]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const target = btn.getAttribute('data-scroll-target');
+        const el = document.querySelector(target);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          const offset = rect.top + window.scrollY - 80; // account for sticky header
+          window.scrollTo({
+            top: offset,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Set current year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
