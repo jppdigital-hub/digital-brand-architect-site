@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Paul Linehan - Digital Brand Architect</title>
+  <title>The Foundation Works - Digital Brand Architecture by Paul Linehan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Foundation Works by Paul Linehan. Digital Brand Architect who turns lived experience into a precise, scalable brand system.">
   <!-- Google Fonts -->
@@ -445,17 +445,29 @@
     .pill-list {
       list-style: none;
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 0.4rem;
+      flex-direction: column;
+      gap: 0.65rem;
+      margin-top: 1.25rem;
     }
 
     .pill {
-      font-size: 0.82rem;
-      padding: 0.35rem 0.75rem;
+      font-size: 0.88rem;
+      padding: 0.6rem 0.85rem;
+      border-radius: var(--radius-soft);
+      background-color: rgba(43, 43, 43, 0.03);
+      border: 1px solid rgba(43, 43, 43, 0.08);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .pill-bullet {
+      width: 8px;
+      height: 8px;
       border-radius: 999px;
-      background-color: rgba(43, 43, 43, 0.04);
-      border: 1px solid rgba(43, 43, 43, 0.06);
+      background-color: var(--amber);
+      margin-top: 0.32rem;
+      flex-shrink: 0;
     }
 
     .card-grid {
@@ -615,10 +627,46 @@
       color: rgba(43, 43, 43, 0.9);
     }
 
+    .cta-contact {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .cta-email {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--blueprint);
+      text-decoration: none;
+      padding: 0.65rem 1.25rem;
+      border-radius: 999px;
+      background-color: rgba(60, 110, 159, 0.06);
+      transition: background-color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .cta-email:hover {
+      background-color: rgba(60, 110, 159, 0.12);
+      transform: translateY(-1px);
+    }
+
+    .cta-divider {
+      font-size: 0.85rem;
+      opacity: 0.6;
+    }
+
     .cta-small {
       font-size: 0.83rem;
       opacity: 0.78;
       margin-top: 0.8rem;
+    }
+
+    .cta-investment {
+      font-size: 0.88rem;
+      opacity: 0.72;
+      margin-top: 1rem;
+      font-style: italic;
     }
 
     /* Footer */
@@ -769,10 +817,22 @@
                 </li>
               </ul>
               <ul class="pill-list">
-                <li class="pill">Identity engineering</li>
-                <li class="pill">Offer architecture</li>
-                <li class="pill">Message clarity</li>
-                <li class="pill">System level thinking</li>
+                <li class="pill">
+                  <span class="pill-bullet"></span>
+                  <span>Extract your Brand DNA from lived experience</span>
+                </li>
+                <li class="pill">
+                  <span class="pill-bullet"></span>
+                  <span>Design your value ladder that converts trust into revenue</span>
+                </li>
+                <li class="pill">
+                  <span class="pill-bullet"></span>
+                  <span>Turn your philosophy into language people repeat</span>
+                </li>
+                <li class="pill">
+                  <span class="pill-bullet"></span>
+                  <span>Build the content ecosystem that runs while you sleep</span>
+                </li>
               </ul>
             </div>
           </div>
@@ -902,12 +962,21 @@
             <p class="cta-body">
               If you feel like your work is bigger than your current brand, that's your signal. The next chapter needs a system, not another random redesign. That's where I come in.
             </p>
-            <button class="btn-primary">
-              Start the conversation
-              <span>→</span>
-            </button>
+            <div class="cta-contact">
+              <a href="mailto:paul@thefoundationworks.co" class="cta-email">
+                paul@thefoundationworks.co
+              </a>
+              <span class="cta-divider">or</span>
+              <a href="https://calendly.com/paul-linehan" class="btn-primary" target="_blank" rel="noopener">
+                Book a foundation call
+                <span>→</span>
+              </a>
+            </div>
             <p class="cta-small">
               No pressure. No funnels. Just a real talk about where you are and what a clean, precise brand architecture could unlock for you.
+            </p>
+            <p class="cta-investment">
+              Premium work for established experts. Investment starts at $8,000 for the complete 8-week build.
             </p>
           </div>
         </div>
